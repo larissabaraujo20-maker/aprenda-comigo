@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Mesma paleta dos vídeos (src/remotion/theme.ts) */
+:root {
+  --ac-fundo: #fbf8f3;
+  --ac-superficie: #ffffff;
+  --ac-superficie-2: #f3efe8;
+  --ac-borda: #e7e2d9;
+  --ac-texto: #1b1a2e;
+  --ac-texto-suave: #5d5b73;
+  --ac-primaria: #5b4bdb;
+  --ac-primaria-clara: #ece9ff;
+  --ac-destaque: #ffb938;
+  --ac-sucesso: #1fa971;
+  --ac-perigo: #e5484d;
+}
+
+.dark {
+  --ac-fundo: #13121f;
+  --ac-superficie: #1c1b2c;
+  --ac-superficie-2: #252439;
+  --ac-borda: #33314b;
+  --ac-texto: #f1effa;
+  --ac-texto-suave: #a9a6c2;
+  --ac-primaria: #8b7dff;
+  --ac-primaria-clara: #2c2852;
+  --ac-destaque: #ffc65c;
+  --ac-sucesso: #3ccf91;
+  --ac-perigo: #ff6b70;
+}
+
+@theme inline {
+  --color-fundo: var(--ac-fundo);
+  --color-superficie: var(--ac-superficie);
+  --color-superficie-2: var(--ac-superficie-2);
+  --color-borda: var(--ac-borda);
+  --color-texto: var(--ac-texto);
+  --color-suave: var(--ac-texto-suave);
+  --color-primaria: var(--ac-primaria);
+  --color-primaria-clara: var(--ac-primaria-clara);
+  --color-destaque: var(--ac-destaque);
+  --color-sucesso: var(--ac-sucesso);
+  --color-perigo: var(--ac-perigo);
+  --font-sans: var(--font-inter), "Segoe UI", system-ui, sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+html.dark {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--ac-fundo);
+  color: var(--ac-texto);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50;
+}
+@utility btn-primaria {
+  @apply btn bg-primaria text-white hover:brightness-110;
+}
+@utility btn-secundaria {
+  @apply btn border border-borda bg-superficie text-texto hover:bg-superficie-2;
+}
+@utility chip {
+  @apply rounded-full border border-borda bg-superficie px-4 py-2 text-sm font-medium text-texto transition hover:border-primaria hover:text-primaria;
+}
+@utility chip-ativo {
+  @apply border-primaria bg-primaria-clara text-primaria;
+}
+@utility cartao {
+  @apply rounded-2xl border border-borda bg-superficie;
+}
